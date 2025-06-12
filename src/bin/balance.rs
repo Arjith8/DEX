@@ -14,6 +14,6 @@ fn main(){
     let client = RpcClient::new("https://api.devnet.solana.com");
     let pubkey = public_key.parse::<Pubkey>().expect("pub key conversion failed");
     let balance = client.get_balance(&pubkey).expect("Failed to get balance");
-    println!("{} is your balance", balance)
+    println!("You have {} lamports of Solana", balance)
 }
 
