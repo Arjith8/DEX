@@ -3,16 +3,6 @@
 version = 4
 
 [[package]]
-name = "DEX"
-version = "0.1.0"
-dependencies = [
- "dotenvy",
- "solana-client",
- "solana-program",
- "solana-sdk",
-]
-
-[[package]]
 name = "addr2line"
 version = "0.24.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -911,6 +901,16 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 1.0.109",
+]
+
+[[package]]
+name = "dex"
+version = "0.1.0"
+dependencies = [
+ "dotenvy",
+ "solana-client",
+ "solana-program",
+ "solana-sdk",
 ]
 
 [[package]]

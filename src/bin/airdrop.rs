@@ -1,5 +1,4 @@
 use std::env;
-
 use dotenvy::dotenv;
 use solana_client::rpc_client::RpcClient;
 use solana_sdk::{native_token::LAMPORTS_PER_SOL, pubkey::Pubkey};
