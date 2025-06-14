@@ -1,13 +1,13 @@
-use std::env;
+use std::{env, fs};
 
 use dotenvy::dotenv;
 use solana_client::rpc_client::RpcClient;
 use solana_sdk::{pubkey::Pubkey, signature::Keypair};
 
 #[derive(Debug)]
-pub struct Account;
+pub struct MainAccount;
 
-impl Account{
+impl MainAccount{
     pub fn get_balance() -> u64 {
         if dotenv().is_err(){
             println!("Failed to extract env vars");
@@ -30,5 +30,14 @@ impl Account{
     
         let keypair = Keypair::from_base58_string(&private_key);
         keypair
+    }
+}
+
+pub struct MintAccount;
+impl MintAccount {
+    pub fn get_keypair() -> Keypair {
+        let private_key = fs::read_to_string("./keys/mint_keypair").expect("Failed to read mint keypair file");
+        let mint_keypair = Keypair::from_base58_string(&private_key);
+        mint_keypair
     }
 }
