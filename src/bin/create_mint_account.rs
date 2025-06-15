@@ -20,6 +20,11 @@ fn main() {
 
     let path = keys_dir.join(filename);
 
+    if path.exists() {
+        println!("Keypair file already exists at: {}", path.display());
+        println!("Aborting this operation to avoid overwriting existing keypair");
+        return;
+    }
     fs::write(path, &keypair).expect("Failed to write mint keypair to file");
         
     println!("Mint keypair has been successfully created");
