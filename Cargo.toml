@@ -5,6 +5,7 @@ edition = "2024"
 
 [dependencies]
 dotenvy = "0.15.7"
+nanoid = "0.4.0"
 solana-client = "2.2.7"
 solana-program = "2.2.1"
 solana-sdk = "2.2.2"
