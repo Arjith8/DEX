@@ -1,4 +1,4 @@
-use std::{env, fs};
+use std::{env, fs, path::Path};
 
 use dotenvy::dotenv;
 use solana_client::rpc_client::RpcClient;
@@ -35,8 +35,9 @@ impl MainAccount{
 
 pub struct MintAccount;
 impl MintAccount {
-    pub fn get_keypair() -> Keypair {
-        let private_key = fs::read_to_string("./keys/mint_keypair").expect("Failed to read mint keypair file");
+    pub fn get_keypair(key_path: &String) -> Keypair {
+        let path = Path::new(key_path);
+        let private_key = fs::read_to_string(path).expect("Failed to read mint keypair file");
         let mint_keypair = Keypair::from_base58_string(&private_key);
         mint_keypair
     }

@@ -1,4 +1,4 @@
-use std::{env, fs};
+use std::{env::{self, args}};
 
 use dex::utils::account::{MainAccount, MintAccount};
 use solana_client::rpc_client::RpcClient;
@@ -26,8 +26,11 @@ fn main() {
         .expect("Failed to get minimum balance for rent exemption");
 
     println!("Minimum balance for rent exemption: {}", min_balance_for_rent_excemption);
-        
-    let mint_keypair = MintAccount::get_keypair();
+
+    let keypair_path = args().nth(1).expect("Please provide the path to the mint keypair file");
+    println!("Mint keypair path: {}", keypair_path);
+
+    let mint_keypair = MintAccount::get_keypair(&keypair_path);
 
     let create_account_instruction = create_account(
         &fee_payer.pubkey(),
