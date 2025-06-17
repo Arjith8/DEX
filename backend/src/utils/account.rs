@@ -79,7 +79,7 @@ impl Account {
             println!("Aborting this operation to avoid overwriting existing keypair");
             return;
         }
-        fs::write(path, &keypair).expect("Failed to write mint keypair to file");
+        fs::write(path, &keypair).expect("Failed to write keypair to file");
 
         println!("Mint keypair has been successfully created");
     }
