@@ -1,12 +1,12 @@
 use std::{env::{self, args}};
 
-use dex::utils::account::{MainAccount, MintAccount};
+use dex::utils::account::{Account, AccountType};
 use solana_client::rpc_client::RpcClient;
 use solana_sdk::{commitment_config::CommitmentConfig, program_pack::Pack, signer::Signer, system_instruction::create_account, transaction::Transaction};
 use spl_token_2022::{instruction::initialize_mint, state::Mint};
 
 fn main() {
-    let balance = MainAccount::get_balance();
+    let balance = Account::get_balance(AccountType::MAIN, None);
     println!("You have {} lamports of Solana", balance);
 
     println!("Creating 2 new tokens...");
@@ -15,7 +15,7 @@ fn main() {
 
     let latest_block_hash = client.get_latest_blockhash().expect("Failed to get latest block hash");
 
-    let fee_payer = MainAccount::get_keypair();
+    let fee_payer = Account::get_keypair(AccountType::MAIN, None);
 
     let mint_space = Mint::LEN;
     println!("Mint space: {}", mint_space);
@@ -30,7 +30,7 @@ fn main() {
     let keypair_path = args().nth(1).expect("Please provide the path to the mint keypair file");
     println!("Mint keypair path: {}", keypair_path);
 
-    let mint_keypair = MintAccount::get_keypair(&keypair_path);
+    let mint_keypair = Account::get_keypair(AccountType::MINT, Some(&keypair_path));
 
     let create_account_instruction = create_account(
         &fee_payer.pubkey(),
