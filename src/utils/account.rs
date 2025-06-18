@@ -7,7 +7,7 @@ use solana_sdk::{pubkey::Pubkey, signature::Keypair, signer::Signer};
 use strum_macros::{Display, EnumString};
 
 pub struct Account;
-#[derive(Display, PartialEq, EnumString)]
+#[derive(Display, PartialEq, EnumString, Debug)]
 pub enum AccountType {
     #[strum(serialize = "mint")]
     MINT,
@@ -17,6 +17,9 @@ pub enum AccountType {
 
     #[strum(serialize = "vault")]
     VAULT,
+
+    #[strum(serialize = "lp")]
+    LP,
 }
 
 impl Account {
@@ -82,6 +85,6 @@ impl Account {
         }
         fs::write(path, &keypair).expect("Failed to write keypair to file");
 
-        println!("Mint keypair has been successfully created");
+        println!("{} keypair has been successfully created", account_type);
     }
 }
