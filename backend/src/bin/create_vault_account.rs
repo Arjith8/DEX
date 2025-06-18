@@ -1,5 +1,5 @@
 use dex::utils::account::{Account, AccountType};
 
-fn main(){
+fn main() {
     Account::create_account(AccountType::VAULT);
 }

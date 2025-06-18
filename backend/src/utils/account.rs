@@ -59,6 +59,7 @@ impl Account {
 
         balance
     }
+
     pub fn create_account(account_type: AccountType) {
         dotenv().expect("Failed to load environment variables from .env file");
 

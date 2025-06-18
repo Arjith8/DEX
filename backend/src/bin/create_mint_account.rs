@@ -1,4 +1,3 @@
-
 use dex::utils::account::{Account, AccountType};
 
 fn main() {
